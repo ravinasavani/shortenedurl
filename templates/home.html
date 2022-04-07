@@ -7,10 +7,9 @@
 {% block content %}
     <div class="container">
         <div class="col-md-6 my-3">
-            
             <form method="POST" action="{% url 'createshorturl' %}">
                 {% csrf_token %}
-                <label>URL</label>
+                <h5>Paste the URL to be shortened</h5>
                 <input type="url" name="url" placeholder="Enter the link here" class="form-control" required>
                 <button type="submit" class="btn btn-success my-2">Shorten URL</button>
             </form>
@@ -28,7 +27,6 @@
                         <tr>
                             <th>Long URL</th>
                             <th>Short URL</th>
-                            <!-- <th>Slug</th> -->
                         </tr>
                         </thead>
                         <tbody>
@@ -37,7 +35,6 @@
                                 <td><a href="{{url.url}}" target="_blank">{{url.url}}</a></td>
                                 <td> <a href="{% url 'redirecturl' url.slug %}" target="_blank"> 
                                     {{ request.META.HTTP_HOST }}/{{url.slug}}</a></td>
-                                <!-- <td>{{url.slug}}</td> -->
                                 </tr>
                             {% endfor %}
                         </tbody>
