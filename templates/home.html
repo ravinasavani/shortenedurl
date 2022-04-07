@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-6 my-3">
+            
+            <form method="POST" action="{% url 'createshorturl' %}">
+                {% csrf_token %}
+                <label>URL</label>
+                <input type="url" name="url" placeholder="Enter the link here" class="form-control" required>
+                <button type="submit" class="btn btn-success my-2">Shorten URL</button>
+            </form>
+        </div>
+        {% if request.user.is_authenticated %}
+            {% if status %}
+                <div class="col-md-12 my-3">
+                    <h5 style="color:lightcoral;">Short URL already exists of these URL check below table </h5>
+                </div>
+            {% endif %}
+            {% if urls %}
+                <div class="col-md-12 my-3">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Long URL</th>
+                            <th>Short URL</th>
+                            <!-- <th>Slug</th> -->
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for url in urls %}
+                                <tr>
+                                <td><a href="{{url.url}}" target="_blank">{{url.url}}</a></td>
+                                <td> <a href="{% url 'redirecturl' url.slug %}" target="_blank"> 
+                                    {{ request.META.HTTP_HOST }}/{{url.slug}}</a></td>
+                                <!-- <td>{{url.slug}}</td> -->
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        {% else %}
+            {% if long_url %}
+                <div class="col-md-12 my-3">
+                    <span>Long URL : </span>
+                    <a href="{{long_url}}" target="_blank">{{long_url}}</a>
+                    <br>
+                    <span>Short URL : </span>
+                    <a href="{% url 'redirecturl' slug %}" target="_blank"> 
+                        {{ request.META.HTTP_HOST }}/{{slug}}</a>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
