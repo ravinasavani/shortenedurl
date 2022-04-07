@@ -37,7 +37,6 @@ def home(request):
     else:
         return render(request,"home.html")
     
- 
 def createshorturl(request):
     if request.method == 'POST':
         slug = ''.join(random.choice(string.ascii_letters)
