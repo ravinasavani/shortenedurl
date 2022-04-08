@@ -7,7 +7,7 @@ Shortened Url - Django
 
 ## Documentations
 - Create the short url of any url with and without login process.
-- If user is logged in then create the shortened url of any url once and again request the same url for shortened url then it will get the warning message and shows shortened url in existing shortened url list. 
-- Without login user will get different shortened url for every request.
+- If the user is logged in then create the shortened url of any url once and again request the same url for shortened url then it will get the warning message and shows shortened url in the existing shortened url list.
+- Without login, user will get a different shortened url for every request.
 
 ## Images
