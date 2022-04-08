@@ -1,4 +1,8 @@
 # Django Shortened Url
-Create the short url Django app.
+Shortened Url - Django
 
 # Requirements
+- Python 3.10.1
+- Django 4.0.2
+
+# Documentations
